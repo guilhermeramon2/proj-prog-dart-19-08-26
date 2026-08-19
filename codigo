@@ -1,4 +1,4 @@
-1-) Código: 
+// 1-) Código: 
 
 import 'dart:io';
 
@@ -30,7 +30,7 @@ void main() {
 
 ### Questão 1 — Raciocínio
 
-A questão pede para **receber, armazenar e mostrar os dados de um usuário**.
+// A questão pede para **receber, armazenar e mostrar os dados de um usuário**.
 
 1. **Definimos os tipos:**
 
@@ -73,7 +73,7 @@ Converte administrador para bool
 Programa mostra os dados
 
 
-2-) Código: 
+// 2-) Código: 
 
 import 'dart:io';
 
