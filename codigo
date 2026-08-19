@@ -146,7 +146,7 @@ if (idade < 12) {
 
 Resumindo: pegamos a idade que já foi cadastrada e usamos condições para descobrir em qual faixa ela se encontra.
 
-3-) Código:
+// 3-) Código:
 
 import 'dart:io';
 
@@ -231,7 +231,7 @@ case → executa a opção
 break → encerra aquela opção
 0 → encerra o programa
 
-4-) Código:
+// 4-) Código:
 
 import 'dart:io';
 
@@ -313,7 +313,7 @@ Map → organiza os dados de cada tarefa
 add() → adiciona a tarefa na lista
 bool → guarda se está concluída ou não
 
-5-) Código:
+// 5-) Código:
 
 import 'dart:io';
 
@@ -408,7 +408,7 @@ tarefas[i] → acessa uma tarefa
 ['prioridade'] → acessa a prioridade
 ['concluida'] → acessa o status
 
-6-) Código:
+// 6-) Código:
 
 import 'dart:io';
 
@@ -568,7 +568,7 @@ main()
 
 Cada função fica responsável por uma tarefa específica.
 
-7-) Código: 
+// 7-) Código: 
 
 import 'dart:io';
 
@@ -780,7 +780,7 @@ Mensagem       Escolhe número
                          Tarefa concluída
 
 
-8-) Código:
+// 8-) Código:
 
 import 'dart:io';
 
@@ -1012,7 +1012,7 @@ Classe Tarefa
 
 Resumindo: na Questão 8 substituímos os Maps por uma classe Tarefa, criamos objetos dessa classe e passamos a usar List<Tarefa>. Isso deixa o código mais organizado e prepara o projeto para as próximas questões de POO.
 
-9-) Código: 
+// 9-) Código: 
 
 import 'dart:io';
 
@@ -1244,7 +1244,7 @@ total - concluidas → calcula pendentes
 (concluidas / total) × 100 → calcula percentual
 double → permite resultados decimais
 
-10-) Código:
+// 10-) Código:
 
 import 'dart:io';
 
