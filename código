@@ -1,0 +1,1615 @@
+1-) Código: 
+
+import 'dart:io';
+
+void main() {
+  // Entrada dos dados
+  print('===== CADASTRO DE USUÁRIO =====');
+
+  print('Digite seu nome:');
+  String nome = stdin.readLineSync()!;
+
+  print('Digite sua idade:');
+  int idade = int.parse(stdin.readLineSync()!);
+
+  print('Digite seu e-mail:');
+  String email = stdin.readLineSync()!;
+
+  print('É administrador? (sim/não)');
+  String respostaAdmin = stdin.readLineSync()!;
+
+  bool administrador = respostaAdmin.toLowerCase() == 'sim';
+
+  // Exibição dos dados
+  print('\n===== DADOS CADASTRADOS =====');
+  print('Nome: $nome');
+  print('Idade: $idade anos');
+  print('E-mail: $email');
+  print('Administrador: $administrador');
+}
+
+### Questão 1 — Raciocínio
+
+A questão pede para **receber, armazenar e mostrar os dados de um usuário**.
+
+1. **Definimos os tipos:**
+
+   * Nome → `String`
+   * Idade → `int`
+   * E-mail → `String`
+   * Administrador → `bool`
+
+2. **Recebemos os dados** usando:
+
+```dart
+stdin.readLineSync()
+```
+
+3. **Convertimos a idade** para número:
+
+```dart
+int.parse()
+```
+
+4. **Transformamos "sim/não" em verdadeiro ou falso:**
+
+```dart
+bool administrador = resposta.toLowerCase() == 'sim';
+```
+
+5. **Mostramos os dados** usando `print()` e `$variavel`.
+
+### Resumindo o funcionamento:
+
+```text
+Usuário digita os dados
+        ↓
+Programa armazena nas variáveis
+        ↓
+Converte idade para int
+        ↓
+Converte administrador para bool
+        ↓
+Programa mostra os dados
+
+
+2-) Código: 
+
+import 'dart:io';
+
+void main() {
+  print('===== CADASTRO DE USUÁRIO =====');
+
+  print('Digite o nome do usuário:');
+  String nome = stdin.readLineSync()!;
+
+  print('Digite a idade:');
+  int idade = int.parse(stdin.readLineSync()!);
+
+  print('Digite o e-mail:');
+  String email = stdin.readLineSync()!;
+
+  print('O usuário é administrador? (sim/não)');
+  String resposta = stdin.readLineSync()!;
+
+  bool administrador = resposta.toLowerCase() == 'sim';
+
+  // Classificação da idade
+  String classificacao;
+
+  if (idade < 12) {
+    classificacao = 'Criança';
+  } else if (idade <= 17) {
+    classificacao = 'Adolescente';
+  } else if (idade <= 59) {
+    classificacao = 'Adulto';
+  } else {
+    classificacao = 'Idoso';
+  }
+
+  print('\n===== DADOS CADASTRADOS =====');
+  print('Nome: $nome');
+  print('Idade: $idade anos');
+  print('E-mail: $email');
+  print('Administrador: $administrador');
+  print('Classificação: $classificacao');
+}
+
+### Questão 2 — Raciocínio
+
+A questão fornece 4 faixas de idade, então usamos if, else if e else para verificar cada uma:
+
+idade < 12       → Criança
+12 até 17        → Adolescente
+18 até 59        → Adulto
+60 ou mais       → Idoso
+
+Por exemplo, se idade = 20:
+
+20 < 12?    Não
+20 <= 17?   Não
+20 <= 59?   Sim
+             ↓
+           Adulto
+
+Por isso usamos:
+
+if (idade < 12) {
+  classificacao = 'Criança';
+} else if (idade <= 17) {
+  classificacao = 'Adolescente';
+} else if (idade <= 59) {
+  classificacao = 'Adulto';
+} else {
+  classificacao = 'Idoso';
+}
+
+Resumindo: pegamos a idade que já foi cadastrada e usamos condições para descobrir em qual faixa ela se encontra.
+
+3-) Código:
+
+import 'dart:io';
+
+void main() {
+  int opcao = -1;
+
+  while (opcao != 0) {
+    print('\n===== GERENCIADOR DE TAREFAS =====');
+    print('1 - Cadastrar tarefa');
+    print('2 - Listar tarefas');
+    print('3 - Concluir tarefa');
+    print('4 - Remover tarefa');
+    print('0 - Sair');
+
+    print('Escolha uma opção:');
+    opcao = int.parse(stdin.readLineSync()!);
+
+    switch (opcao) {
+      case 1:
+        print('Cadastrar tarefa selecionado.');
+        break;
+
+      case 2:
+        print('Listar tarefas selecionado.');
+        break;
+
+      case 3:
+        print('Concluir tarefa selecionado.');
+        break;
+
+      case 4:
+        print('Remover tarefa selecionado.');
+        break;
+
+      case 0:
+        print('Saindo do sistema...');
+        break;
+
+      default:
+        print('Opção inválida!');
+    }
+  }
+}
+
+### Questão 3 — Raciocínio
+
+A questão pede que o menu continue aparecendo até o usuário escolher 0.
+
+Por isso usamos:
+
+while (opcao != 0)
+
+Enquanto a opção for diferente de 0, o menu continua.
+
+Depois usamos:
+
+switch (opcao)
+
+O switch verifica qual opção o usuário escolheu.
+
+Por exemplo:
+
+Usuário escolhe 1
+       ↓
+case 1
+       ↓
+Cadastrar tarefa
+
+Se escolher:
+
+2 → Listar tarefas
+3 → Concluir tarefa
+4 → Remover tarefa
+0 → Sair
+
+O break faz o programa sair daquele case e voltar para o while.
+
+Resumindo
+while → mantém o menu funcionando
+switch → identifica a opção escolhida
+case → executa a opção
+break → encerra aquela opção
+0 → encerra o programa
+
+4-) Código:
+
+import 'dart:io';
+
+void main() {
+  List<Map<String, dynamic>> tarefas = [];
+
+  print('===== CADASTRO DE TAREFA =====');
+
+  print('Digite o título da tarefa:');
+  String titulo = stdin.readLineSync()!;
+
+  print('Digite a descrição da tarefa:');
+  String descricao = stdin.readLineSync()!;
+
+  print('Digite a prioridade (Alta, Média ou Baixa):');
+  String prioridade = stdin.readLineSync()!;
+
+  bool concluida = false;
+
+  tarefas.add({
+    'titulo': titulo,
+    'descricao': descricao,
+    'prioridade': prioridade,
+    'concluida': concluida,
+  });
+
+  print('\nTarefa cadastrada com sucesso!');
+}
+
+### Questão 4 — Raciocínio
+
+Primeiro precisamos de um lugar para guardar várias tarefas.
+
+Por isso criamos:
+
+List<Map<String, dynamic>> tarefas = [];
+
+A List funciona como uma lista onde podemos colocar várias tarefas.
+
+Depois pedimos os dados:
+
+String titulo = stdin.readLineSync()!;
+String descricao = stdin.readLineSync()!;
+String prioridade = stdin.readLineSync()!;
+
+O status começa como false, porque uma tarefa recém-cadastrada ainda não foi concluída:
+
+bool concluida = false;
+
+Depois colocamos tudo dentro da lista usando add():
+
+tarefas.add({
+  'titulo': titulo,
+  'descricao': descricao,
+  'prioridade': prioridade,
+  'concluida': concluida,
+});
+Exemplo
+
+Se o usuário cadastrar:
+
+Título: Estudar Dart
+Descrição: Estudar listas e mapas
+Prioridade: Alta
+
+A lista passa a ter algo parecido com:
+
+[
+  {
+    titulo: "Estudar Dart",
+    descricao: "Estudar listas e mapas",
+    prioridade: "Alta",
+    concluida: false
+  }
+]
+Resumindo
+List → guarda várias tarefas
+Map → organiza os dados de cada tarefa
+add() → adiciona a tarefa na lista
+bool → guarda se está concluída ou não
+
+5-) Código:
+
+import 'dart:io';
+
+void main() {
+  List<Map<String, dynamic>> tarefas = [];
+
+  print('===== CADASTRO DE TAREFA =====');
+
+  print('Digite o título da tarefa:');
+  String titulo = stdin.readLineSync()!;
+
+  print('Digite a descrição da tarefa:');
+  String descricao = stdin.readLineSync()!;
+
+  print('Digite a prioridade (Alta, Média ou Baixa):');
+  String prioridade = stdin.readLineSync()!;
+
+  bool concluida = false;
+
+  tarefas.add({
+    'titulo': titulo,
+    'descricao': descricao,
+    'prioridade': prioridade,
+    'concluida': concluida,
+  });
+
+  print('\n===== LISTA DE TAREFAS =====');
+
+  if (tarefas.isEmpty) {
+    print('Nenhuma tarefa cadastrada.');
+  } else {
+    for (int i = 0; i < tarefas.length; i++) {
+      print('\n${i + 1} - ${tarefas[i]['titulo']}');
+      print('Prioridade: ${tarefas[i]['prioridade']}');
+
+      if (tarefas[i]['concluida']) {
+        print('Status: Concluída');
+      } else {
+        print('Status: Pendente');
+      }
+    }
+  }
+}
+
+### Questão 5 — Raciocínio
+
+Primeiro precisamos verificar se existem tarefas:
+
+if (tarefas.isEmpty)
+
+Se a lista estiver vazia, mostramos:
+
+Nenhuma tarefa cadastrada.
+
+Se houver tarefas, usamos um for para percorrer a lista:
+
+for (int i = 0; i < tarefas.length; i++)
+
+O length informa quantas tarefas existem.
+
+Por exemplo:
+
+3 tarefas → length = 3
+
+Depois acessamos cada tarefa usando sua posição:
+
+tarefas[i]
+
+E pegamos cada informação:
+
+tarefas[i]['titulo']
+tarefas[i]['prioridade']
+tarefas[i]['concluida']
+
+Por fim, verificamos o bool:
+
+if (tarefas[i]['concluida'])
+
+Se for true:
+
+Status: Concluída
+
+Se for false:
+
+Status: Pendente
+Resumindo
+isEmpty → verifica se existem tarefas
+length → informa quantas tarefas existem
+for → percorre todas as tarefas
+tarefas[i] → acessa uma tarefa
+['titulo'] → acessa o título
+['prioridade'] → acessa a prioridade
+['concluida'] → acessa o status
+
+6-) Código:
+
+import 'dart:io';
+
+List<Map<String, dynamic>> tarefas = [];
+
+void exibirMenu() {
+  print('\n===== GERENCIADOR DE TAREFAS =====');
+  print('1 - Cadastrar tarefa');
+  print('2 - Listar tarefas');
+  print('3 - Concluir tarefa');
+  print('4 - Remover tarefa');
+  print('0 - Sair');
+}
+
+void cadastrarTarefa() {
+  print('\n===== CADASTRAR TAREFA =====');
+
+  print('Digite o título:');
+  String titulo = stdin.readLineSync()!;
+
+  print('Digite a descrição:');
+  String descricao = stdin.readLineSync()!;
+
+  print('Digite a prioridade (Alta, Média ou Baixa):');
+  String prioridade = stdin.readLineSync()!;
+
+  bool concluida = false;
+
+  tarefas.add({
+    'titulo': titulo,
+    'descricao': descricao,
+    'prioridade': prioridade,
+    'concluida': concluida,
+  });
+
+  print('Tarefa cadastrada com sucesso!');
+}
+
+void listarTarefas() {
+  print('\n===== LISTA DE TAREFAS =====');
+
+  if (tarefas.isEmpty) {
+    print('Nenhuma tarefa cadastrada.');
+    return;
+  }
+
+  for (int i = 0; i < tarefas.length; i++) {
+    print('\n${i + 1} - ${tarefas[i]['titulo']}');
+    print('Descrição: ${tarefas[i]['descricao']}');
+    print('Prioridade: ${tarefas[i]['prioridade']}');
+
+    if (tarefas[i]['concluida']) {
+      print('Status: Concluída');
+    } else {
+      print('Status: Pendente');
+    }
+  }
+}
+
+void concluirTarefa() {
+  print('\nFunção de concluir tarefa.');
+}
+
+void removerTarefa() {
+  print('\nFunção de remover tarefa.');
+}
+
+void main() {
+  int opcao = -1;
+
+  while (opcao != 0) {
+    exibirMenu();
+
+    print('Escolha uma opção:');
+    opcao = int.parse(stdin.readLineSync()!);
+
+    switch (opcao) {
+      case 1:
+        cadastrarTarefa();
+        break;
+
+      case 2:
+        listarTarefas();
+        break;
+
+      case 3:
+        concluirTarefa();
+        break;
+
+      case 4:
+        removerTarefa();
+        break;
+
+      case 0:
+        print('Saindo do sistema...');
+        break;
+
+      default:
+        print('Opção inválida!');
+    }
+  }
+}
+
+### Questão 6 — Raciocínio
+
+O problema da versão anterior é que o main() estava ficando responsável por tudo.
+
+Agora dividimos o programa em funções.
+
+Por exemplo:
+
+void cadastrarTarefa() {
+   // código para cadastrar
+}
+
+Quando o usuário escolher 1, o main() simplesmente chama:
+
+cadastrarTarefa();
+
+A mesma ideia vale para listar:
+
+listarTarefas();
+
+E para as outras operações:
+
+concluirTarefa();
+removerTarefa();
+
+Assim, o main() fica responsável principalmente por controlar o fluxo:
+
+Menu
+ ↓
+Usuário escolhe uma opção
+ ↓
+main() identifica a opção
+ ↓
+chama a função correspondente
+ ↓
+volta para o menu
+Por que isso é melhor?
+
+Em vez de ter um main() gigante:
+
+main()
+ ├── cadastro
+ ├── listagem
+ ├── conclusão
+ └── remoção
+
+passamos a ter:
+
+main()
+ ├── cadastrarTarefa()
+ ├── listarTarefas()
+ ├── concluirTarefa()
+ └── removerTarefa()
+
+Cada função fica responsável por uma tarefa específica.
+
+7-) Código: 
+
+import 'dart:io';
+
+List<Map<String, dynamic>> tarefas = [];
+
+void exibirMenu() {
+  print('\n===== GERENCIADOR DE TAREFAS =====');
+  print('1 - Cadastrar tarefa');
+  print('2 - Listar tarefas');
+  print('3 - Concluir tarefa');
+  print('4 - Remover tarefa');
+  print('0 - Sair');
+}
+
+void cadastrarTarefa() {
+  print('\n===== CADASTRAR TAREFA =====');
+
+  print('Digite o título:');
+  String titulo = stdin.readLineSync()!;
+
+  print('Digite a descrição:');
+  String descricao = stdin.readLineSync()!;
+
+  print('Digite a prioridade (Alta, Média ou Baixa):');
+  String prioridade = stdin.readLineSync()!;
+
+  tarefas.add({
+    'titulo': titulo,
+    'descricao': descricao,
+    'prioridade': prioridade,
+    'concluida': false,
+  });
+
+  print('Tarefa cadastrada com sucesso!');
+}
+
+void listarTarefas() {
+  print('\n===== LISTA DE TAREFAS =====');
+
+  if (tarefas.isEmpty) {
+    print('Nenhuma tarefa cadastrada.');
+    return;
+  }
+
+  for (int i = 0; i < tarefas.length; i++) {
+    print('\n${i + 1} - ${tarefas[i]['titulo']}');
+    print('Descrição: ${tarefas[i]['descricao']}');
+    print('Prioridade: ${tarefas[i]['prioridade']}');
+
+    if (tarefas[i]['concluida']) {
+      print('Status: Concluída');
+    } else {
+      print('Status: Pendente');
+    }
+  }
+}
+
+void concluirTarefa() {
+  if (tarefas.isEmpty) {
+    print('\nNenhuma tarefa cadastrada.');
+    return;
+  }
+
+  listarTarefas();
+
+  print('\nDigite o número da tarefa que deseja concluir:');
+  int numero = int.parse(stdin.readLineSync()!);
+
+  if (numero < 1 || numero > tarefas.length) {
+    print('Número de tarefa inexistente!');
+    return;
+  }
+
+  int indice = numero - 1;
+
+  if (tarefas[indice]['concluida']) {
+    print('Essa tarefa já está concluída!');
+    return;
+  }
+
+  tarefas[indice]['concluida'] = true;
+
+  print(
+    'Tarefa "${tarefas[indice]['titulo']}" concluída com sucesso!',
+  );
+}
+
+void removerTarefa() {
+  print('\nFunção de remover tarefa.');
+}
+
+void main() {
+  int opcao = -1;
+
+  while (opcao != 0) {
+    exibirMenu();
+
+    print('Escolha uma opção:');
+    opcao = int.parse(stdin.readLineSync()!);
+
+    switch (opcao) {
+      case 1:
+        cadastrarTarefa();
+        break;
+
+      case 2:
+        listarTarefas();
+        break;
+
+      case 3:
+        concluirTarefa();
+        break;
+
+      case 4:
+        removerTarefa();
+        break;
+
+      case 0:
+        print('Saindo do sistema...');
+        break;
+
+      default:
+        print('Opção inválida!');
+    }
+  }
+}
+
+### Questão 7 — Raciocínio
+
+Primeiro verificamos se existem tarefas:
+
+if (tarefas.isEmpty) {
+  print('Nenhuma tarefa cadastrada.');
+  return;
+}
+
+Se não existir nenhuma, não tem o que concluir.
+
+Depois perguntamos qual tarefa o usuário quer concluir:
+
+int numero = int.parse(stdin.readLineSync()!);
+
+Precisamos verificar se o número existe:
+
+if (numero < 1 || numero > tarefas.length) {
+  print('Número de tarefa inexistente!');
+  return;
+}
+Por que numero - 1?
+
+O usuário vê as tarefas começando em 1:
+
+1 - Estudar Dart
+2 - Fazer exercício
+3 - Fazer trabalho
+
+Mas a List começa na posição 0:
+
+0 → Estudar Dart
+1 → Fazer exercício
+2 → Fazer trabalho
+
+Por isso fazemos:
+
+int indice = numero - 1;
+
+Se o usuário escolher 2:
+
+2 - 1 = 1
+
+Então acessamos:
+
+tarefas[1]
+
+que é a segunda tarefa.
+
+Depois verificamos se ela já está concluída:
+
+if (tarefas[indice]['concluida']) {
+  print('Essa tarefa já está concluída!');
+  return;
+}
+
+Se ainda estiver pendente, mudamos:
+
+tarefas[indice]['concluida'] = true;
+
+E mostramos a mensagem de sucesso.
+
+Resumindo o raciocínio
+Usuário escolhe "Concluir"
+          ↓
+Existem tarefas?
+    ↓             ↓
+   Não            Sim
+    ↓              ↓
+Mensagem       Escolhe número
+                  ↓
+          Número existe?
+            ↓          ↓
+           Não         Sim
+            ↓           ↓
+        Mensagem    Já concluída?
+                       ↓      ↓
+                      Sim     Não
+                       ↓       ↓
+                   Mensagem  muda para true
+                                ↓
+                         Tarefa concluída
+
+
+8-) Código:
+
+import 'dart:io';
+
+class Tarefa {
+  String titulo;
+  String descricao;
+  String prioridade;
+  bool concluida;
+
+  Tarefa({
+    required this.titulo,
+    required this.descricao,
+    required this.prioridade,
+    this.concluida = false,
+  });
+
+  void concluir() {
+    concluida = true;
+  }
+}
+
+List<Tarefa> tarefas = [];
+
+void exibirMenu() {
+  print('\n===== GERENCIADOR DE TAREFAS =====');
+  print('1 - Cadastrar tarefa');
+  print('2 - Listar tarefas');
+  print('3 - Concluir tarefa');
+  print('4 - Remover tarefa');
+  print('0 - Sair');
+}
+
+void cadastrarTarefa() {
+  print('\n===== CADASTRAR TAREFA =====');
+
+  print('Digite o título:');
+  String titulo = stdin.readLineSync()!;
+
+  print('Digite a descrição:');
+  String descricao = stdin.readLineSync()!;
+
+  print('Digite a prioridade (Alta, Média ou Baixa):');
+  String prioridade = stdin.readLineSync()!;
+
+  Tarefa tarefa = Tarefa(
+    titulo: titulo,
+    descricao: descricao,
+    prioridade: prioridade,
+  );
+
+  tarefas.add(tarefa);
+
+  print('Tarefa cadastrada com sucesso!');
+}
+
+void listarTarefas() {
+  print('\n===== LISTA DE TAREFAS =====');
+
+  if (tarefas.isEmpty) {
+    print('Nenhuma tarefa cadastrada.');
+    return;
+  }
+
+  for (int i = 0; i < tarefas.length; i++) {
+    Tarefa tarefa = tarefas[i];
+
+    print('\n${i + 1} - ${tarefa.titulo}');
+    print('Descrição: ${tarefa.descricao}');
+    print('Prioridade: ${tarefa.prioridade}');
+
+    if (tarefa.concluida) {
+      print('Status: Concluída');
+    } else {
+      print('Status: Pendente');
+    }
+  }
+}
+
+void concluirTarefa() {
+  if (tarefas.isEmpty) {
+    print('\nNenhuma tarefa cadastrada.');
+    return;
+  }
+
+  listarTarefas();
+
+  print('\nDigite o número da tarefa que deseja concluir:');
+  int numero = int.parse(stdin.readLineSync()!);
+
+  if (numero < 1 || numero > tarefas.length) {
+    print('Número de tarefa inexistente!');
+    return;
+  }
+
+  Tarefa tarefa = tarefas[numero - 1];
+
+  if (tarefa.concluida) {
+    print('Essa tarefa já está concluída!');
+    return;
+  }
+
+  tarefa.concluir();
+
+  print('Tarefa "${tarefa.titulo}" concluída com sucesso!');
+}
+
+void removerTarefa() {
+  print('\nFunção de remover tarefa.');
+}
+
+void main() {
+  int opcao = -1;
+
+  while (opcao != 0) {
+    exibirMenu();
+
+    print('Escolha uma opção:');
+    opcao = int.parse(stdin.readLineSync()!);
+
+    switch (opcao) {
+      case 1:
+        cadastrarTarefa();
+        break;
+
+      case 2:
+        listarTarefas();
+        break;
+
+      case 3:
+        concluirTarefa();
+        break;
+
+      case 4:
+        removerTarefa();
+        break;
+
+      case 0:
+        print('Saindo do sistema...');
+        break;
+
+      default:
+        print('Opção inválida!');
+    }
+  }
+}
+
+### Questão 8 — Raciocínio
+
+A principal mudança é que antes tínhamos:
+
+List<Map<String, dynamic>> tarefas = [];
+
+Agora criamos uma classe:
+
+class Tarefa {
+  String titulo;
+  String descricao;
+  String prioridade;
+  bool concluida;
+}
+
+A classe funciona como um modelo para nossas tarefas.
+
+Depois criamos um construtor:
+
+Tarefa({
+  required this.titulo,
+  required this.descricao,
+  required this.prioridade,
+  this.concluida = false,
+});
+
+Assim podemos criar uma tarefa:
+
+Tarefa tarefa = Tarefa(
+  titulo: titulo,
+  descricao: descricao,
+  prioridade: prioridade,
+);
+
+E agora nossa lista passa a ser:
+
+List<Tarefa> tarefas = [];
+
+Ou seja:
+
+Antes:
+List → Map → dados da tarefa
+
+
+Agora:
+List → Tarefa → dados da tarefa
+
+Também criamos um método:
+
+void concluir() {
+  concluida = true;
+}
+
+Assim, em vez de alterar diretamente:
+
+tarefa['concluida'] = true;
+
+podemos simplesmente fazer:
+
+tarefa.concluir();
+
+A classe é o modelo da tarefa.
+
+O objeto é uma tarefa criada a partir desse modelo.
+
+Por exemplo:
+
+Classe Tarefa
+       ↓
+      modelo
+       ↓
+ ┌─────────────┐
+ │ Tarefa      │
+ │ título      │
+ │ descrição   │
+ │ prioridade  │
+ │ concluída   │
+ └─────────────┘
+       ↓
+      objeto
+       ↓
+"Estudar Dart"
+
+Resumindo: na Questão 8 substituímos os Maps por uma classe Tarefa, criamos objetos dessa classe e passamos a usar List<Tarefa>. Isso deixa o código mais organizado e prepara o projeto para as próximas questões de POO.
+
+9-) Código: 
+
+import 'dart:io';
+
+class Tarefa {
+  String titulo;
+  String descricao;
+  String prioridade;
+  bool concluida;
+
+  Tarefa({
+    required this.titulo,
+    required this.descricao,
+    required this.prioridade,
+    this.concluida = false,
+  });
+
+  void concluir() {
+    concluida = true;
+  }
+}
+
+List<Tarefa> tarefas = [];
+
+void exibirMenu() {
+  print('\n===== GERENCIADOR DE TAREFAS =====');
+  print('1 - Cadastrar tarefa');
+  print('2 - Listar tarefas');
+  print('3 - Concluir tarefa');
+  print('4 - Remover tarefa');
+  print('5 - Estatísticas');
+  print('0 - Sair');
+}
+
+void cadastrarTarefa() {
+  print('\n===== CADASTRAR TAREFA =====');
+
+  print('Digite o título:');
+  String titulo = stdin.readLineSync()!;
+
+  print('Digite a descrição:');
+  String descricao = stdin.readLineSync()!;
+
+  print('Digite a prioridade (Alta, Média ou Baixa):');
+  String prioridade = stdin.readLineSync()!;
+
+  Tarefa tarefa = Tarefa(
+    titulo: titulo,
+    descricao: descricao,
+    prioridade: prioridade,
+  );
+
+  tarefas.add(tarefa);
+
+  print('Tarefa cadastrada com sucesso!');
+}
+
+void listarTarefas() {
+  print('\n===== LISTA DE TAREFAS =====');
+
+  if (tarefas.isEmpty) {
+    print('Nenhuma tarefa cadastrada.');
+    return;
+  }
+
+  for (int i = 0; i < tarefas.length; i++) {
+    Tarefa tarefa = tarefas[i];
+
+    print('\n${i + 1} - ${tarefa.titulo}');
+    print('Descrição: ${tarefa.descricao}');
+    print('Prioridade: ${tarefa.prioridade}');
+
+    if (tarefa.concluida) {
+      print('Status: Concluída');
+    } else {
+      print('Status: Pendente');
+    }
+  }
+}
+
+void concluirTarefa() {
+  if (tarefas.isEmpty) {
+    print('\nNenhuma tarefa cadastrada.');
+    return;
+  }
+
+  listarTarefas();
+
+  print('\nDigite o número da tarefa que deseja concluir:');
+  int numero = int.parse(stdin.readLineSync()!);
+
+  if (numero < 1 || numero > tarefas.length) {
+    print('Número de tarefa inexistente!');
+    return;
+  }
+
+  Tarefa tarefa = tarefas[numero - 1];
+
+  if (tarefa.concluida) {
+    print('Essa tarefa já está concluída!');
+    return;
+  }
+
+  tarefa.concluir();
+
+  print('Tarefa "${tarefa.titulo}" concluída com sucesso!');
+}
+
+void removerTarefa() {
+  print('\nFunção de remover tarefa.');
+}
+
+void mostrarEstatisticas() {
+  int total = tarefas.length;
+  int concluidas = 0;
+
+  for (Tarefa tarefa in tarefas) {
+    if (tarefa.concluida) {
+      concluidas++;
+    }
+  }
+
+  int pendentes = total - concluidas;
+
+  double percentual = 0;
+
+  if (total > 0) {
+    percentual = (concluidas / total) * 100;
+  }
+
+  print('\n===== ESTATÍSTICAS =====');
+  print('Total de tarefas: $total');
+  print('Tarefas concluídas: $concluidas');
+  print('Tarefas pendentes: $pendentes');
+  print('Percentual concluído: ${percentual.toStringAsFixed(0)}%');
+}
+
+void main() {
+  int opcao = -1;
+
+  while (opcao != 0) {
+    exibirMenu();
+
+    print('Escolha uma opção:');
+    opcao = int.parse(stdin.readLineSync()!);
+
+    switch (opcao) {
+      case 1:
+        cadastrarTarefa();
+        break;
+
+      case 2:
+        listarTarefas();
+        break;
+
+      case 3:
+        concluirTarefa();
+        break;
+
+      case 4:
+        removerTarefa();
+        break;
+
+      case 5:
+        mostrarEstatisticas();
+        break;
+
+      case 0:
+        print('Saindo do sistema...');
+        break;
+
+      default:
+        print('Opção inválida!');
+    }
+  }
+}
+
+### Questão 9 — Raciocínio
+
+Primeiro precisamos descobrir quantas tarefas existem:
+
+int total = tarefas.length;
+
+Depois contamos quantas estão concluídas:
+
+int concluidas = 0;
+
+
+for (Tarefa tarefa in tarefas) {
+  if (tarefa.concluida) {
+    concluidas++;
+  }
+}
+
+A cada tarefa concluída, o contador aumenta 1.
+
+Depois descobrimos as pendentes:
+
+int pendentes = total - concluidas;
+
+Por exemplo:
+
+10 tarefas no total
+6 concluídas
+
+
+10 - 6 = 4 pendentes
+
+Por último, calculamos o percentual:
+
+percentual = (concluidas / total) * 100;
+
+Com 6 concluídas de 10:
+
+6 / 10 × 100 = 60%
+E por que usamos double?
+
+Porque o resultado da divisão pode possuir casas decimais:
+
+double percentual;
+
+Por exemplo, 1 tarefa concluída de 3:
+
+1 / 3 × 100 = 33,33%
+Resumindo
+length → quantidade total
+for → percorre as tarefas
+concluidas++ → conta as concluídas
+total - concluidas → calcula pendentes
+(concluidas / total) × 100 → calcula percentual
+double → permite resultados decimais
+
+10-) Código:
+
+import 'dart:io';
+
+class Tarefa {
+  String titulo;
+  String descricao;
+  String prioridade;
+  bool concluida;
+
+  Tarefa({
+    required this.titulo,
+    required this.descricao,
+    required this.prioridade,
+    this.concluida = false,
+  });
+
+  void concluir() {
+    concluida = true;
+  }
+}
+
+List<Tarefa> tarefas = [];
+
+void exibirMenu() {
+  print('\n===== GERENCIADOR DE TAREFAS =====');
+  print('1 - Cadastrar tarefa');
+  print('2 - Listar tarefas');
+  print('3 - Concluir tarefa');
+  print('4 - Remover tarefa');
+  print('5 - Estatísticas');
+  print('6 - Filtrar por prioridade');
+  print('0 - Sair');
+}
+
+void cadastrarTarefa() {
+  print('\n===== CADASTRAR TAREFA =====');
+
+  print('Digite o título:');
+  String titulo = stdin.readLineSync()!;
+
+  print('Digite a descrição:');
+  String descricao = stdin.readLineSync()!;
+
+  print('Digite a prioridade (Alta, Média ou Baixa):');
+  String prioridade = stdin.readLineSync()!;
+
+  Tarefa tarefa = Tarefa(
+    titulo: titulo,
+    descricao: descricao,
+    prioridade: prioridade,
+  );
+
+  tarefas.add(tarefa);
+
+  print('Tarefa cadastrada com sucesso!');
+}
+
+void listarTarefas() {
+  print('\n===== LISTA DE TAREFAS =====');
+
+  if (tarefas.isEmpty) {
+    print('Nenhuma tarefa cadastrada.');
+    return;
+  }
+
+  for (int i = 0; i < tarefas.length; i++) {
+    Tarefa tarefa = tarefas[i];
+
+    print('\n${i + 1} - ${tarefa.titulo}');
+    print('Descrição: ${tarefa.descricao}');
+    print('Prioridade: ${tarefa.prioridade}');
+
+    if (tarefa.concluida) {
+      print('Status: Concluída');
+    } else {
+      print('Status: Pendente');
+    }
+  }
+}
+
+void concluirTarefa() {
+  if (tarefas.isEmpty) {
+    print('\nNenhuma tarefa cadastrada.');
+    return;
+  }
+
+  listarTarefas();
+
+  print('\nDigite o número da tarefa que deseja concluir:');
+  int numero = int.parse(stdin.readLineSync()!);
+
+  if (numero < 1 || numero > tarefas.length) {
+    print('Número de tarefa inexistente!');
+    return;
+  }
+
+  Tarefa tarefa = tarefas[numero - 1];
+
+  if (tarefa.concluida) {
+    print('Essa tarefa já está concluída!');
+    return;
+  }
+
+  tarefa.concluir();
+
+  print('Tarefa "${tarefa.titulo}" concluída com sucesso!');
+}
+
+void removerTarefa() {
+  print('\nFunção de remover tarefa.');
+}
+
+void mostrarEstatisticas() {
+  int total = tarefas.length;
+  int concluidas = 0;
+
+  for (Tarefa tarefa in tarefas) {
+    if (tarefa.concluida) {
+      concluidas++;
+    }
+  }
+
+  int pendentes = total - concluidas;
+
+  double percentual = 0;
+
+  if (total > 0) {
+    percentual = (concluidas / total) * 100;
+  }
+
+  print('\n===== ESTATÍSTICAS =====');
+  print('Total de tarefas: $total');
+  print('Tarefas concluídas: $concluidas');
+  print('Tarefas pendentes: $pendentes');
+  print('Percentual concluído: ${percentual.toStringAsFixed(0)}%');
+}
+
+void filtrarPorPrioridade() {
+  if (tarefas.isEmpty) {
+    print('\nNenhuma tarefa cadastrada.');
+    return;
+  }
+
+  print('\n===== FILTRAR POR PRIORIDADE =====');
+  print('1 - Alta');
+  print('2 - Média');
+  print('3 - Baixa');
+
+  print('Escolha a prioridade:');
+  int opcao = int.parse(stdin.readLineSync()!);
+
+  String prioridade;
+
+  switch (opcao) {
+    case 1:
+      prioridade = 'Alta';
+      break;
+
+    case 2:
+      prioridade = 'Média';
+      break;
+
+    case 3:
+      prioridade = 'Baixa';
+      break;
+
+    default:
+      print('Opção de prioridade inválida!');
+      return;
+  }
+
+  bool encontrou = false;
+
+  print('\n===== TAREFAS - PRIORIDADE $prioridade =====');
+
+  for (int i = 0; i < tarefas.length; i++) {
+    Tarefa tarefa = tarefas[i];
+
+    if (tarefa.prioridade.toLowerCase() == prioridade.toLowerCase()) {
+      print('\n${i + 1} - ${tarefa.titulo}');
+      print('Descrição: ${tarefa.descricao}');
+      print('Prioridade: ${tarefa.prioridade}');
+
+      if (tarefa.concluida) {
+        print('Status: Concluída');
+      } else {
+        print('Status: Pendente');
+      }
+
+      encontrou = true;
+    }
+  }
+
+  if (!encontrou) {
+    print('Nenhuma tarefa encontrada com essa prioridade.');
+  }
+}
+
+void main() {
+  int opcao = -1;
+
+  while (opcao != 0) {
+    exibirMenu();
+
+    print('Escolha uma opção:');
+    opcao = int.parse(stdin.readLineSync()!);
+
+    switch (opcao) {
+      case 1:
+        cadastrarTarefa();
+        break;
+
+      case 2:
+        listarTarefas();
+        break;
+
+      case 3:
+        concluirTarefa();
+        break;
+
+      case 4:
+        removerTarefa();
+        break;
+
+      case 5:
+        mostrarEstatisticas();
+        break;
+
+      case 6:
+        filtrarPorPrioridade();
+        break;
+
+      case 0:
+        print('Saindo do sistema...');
+        break;
+
+      default:
+        print('Opção inválida!');
+    }
+  }
+}
+
+### Questão 10 — Raciocínio
+
+Primeiro adicionamos a opção 6 ao menu:
+
+print('6 - Filtrar por prioridade');
+
+Depois, no switch principal:
+
+case 6:
+  filtrarPorPrioridade();
+  break;
+
+Criamos uma função específica para o filtro:
+
+void filtrarPorPrioridade() {
+
+Dentro dela, o usuário escolhe:
+
+1 → Alta
+2 → Média
+3 → Baixa
+
+O switch transforma o número escolhido em uma prioridade:
+
+case 1:
+  prioridade = 'Alta';
+  break;
+
+Depois percorremos todas as tarefas:
+
+for (int i = 0; i < tarefas.length; i++) {
+
+E verificamos se a prioridade da tarefa é igual à escolhida:
+
+if (tarefa.prioridade.toLowerCase() == prioridade.toLowerCase()) {
+
+Se for igual, mostramos a tarefa.
+
+Exemplo
+
+Imagine que temos:
+
+1 - Estudar Dart       → Alta
+2 - Fazer exercício    → Baixa
+3 - Fazer trabalho     → Alta
+4 - Ler apostila       → Média
+
+O usuário escolhe:
+
+6 - Filtrar por prioridade
+
+
+1 - Alta
+2 - Média
+3 - Baixa
+
+
+Escolha: 1
+
+O programa mostrará somente:
+
+===== TAREFAS - PRIORIDADE Alta =====
+
+
+1 - Estudar Dart
+Prioridade: Alta
+Status: Pendente
+
+
+3 - Fazer trabalho
+Prioridade: Alta
+Status: Pendente
+Para que serve encontrou?
+
+Criamos:
+
+bool encontrou = false;
+
+Ele serve para saber se alguma tarefa corresponde à prioridade escolhida.
+
+Quando encontramos uma:
+
+encontrou = true;
+
+Se terminarmos de percorrer a lista e continuar false, significa que nenhuma foi encontrada:
+
+if (!encontrou) {
+  print('Nenhuma tarefa encontrada com essa prioridade.');
+}
+Resumindo a Questão 10
+Usuário escolhe a prioridade
+          ↓
+switch identifica Alta/Média/Baixa
+          ↓
+for percorre todas as tarefas
+          ↓
+if compara as prioridades
+          ↓
+Se for igual → mostra a tarefa
+          ↓
+Se nenhuma for encontrada → informa ao usuário
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
